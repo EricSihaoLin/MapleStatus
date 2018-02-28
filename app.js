@@ -5,15 +5,18 @@ const bot = new Discord.Client();
 //Global status
 var login1 = false;
 var login1Delay = 0;
-var login1Changed = false;
+var login1Changed = new Date();
 
 var login2 = false;
 var login2Delay = 0;
-var login2Changed = false;
+var login2Changed = new Date();
 
 var login3 = false;
 var login3Delay = 0;
-var login3Changed = false;
+var login3Changed = new Date();
+
+var overall = false;
+var overallChanged = new Date();
 
 var initial = true;
 var lastCheck;
@@ -133,75 +136,59 @@ function cronCheck() {
   portscanner.checkPortStatus(8484, '8.31.99.141', 10000, function(error, status) {
     if (status === 'open') {
       if(!login1){
-        login1Changed = true;
-        setTimeout(checkAnnounce, 2000);
+        login1Changed = new Date();
       }
       login1 = true;
       login1Delay = new Date() - lastCheck;
-      login1Changed = false;
     } else {
       if(login1){
-        login1Changed = true;
-        setTimeout(checkAnnounce, 2000);
+        login1Changed = new Date();
       }
       login1 = false;
       login1Delay = -1;
-      login1Changed = false;
     }
   });
   portscanner.checkPortStatus(8484, '8.31.99.142', 10000, function(error, status) {
     if (status === 'open') {
       if(!login2){
-        login2Changed = true;
-        setTimeout(checkAnnounce, 2000);
+        login2Changed = new Date();
       }
       login2 = true;
       login2Delay = new Date() - lastCheck;
-      login2Changed = false;
     } else {
       if(login2){
-        login2Changed = true;
-        setTimeout(checkAnnounce, 2000);
+        login2Changed = new Date();
       }
       login2 = false;
       login2Delay = -1;
-      login2Changed = false;
     }
   });
   portscanner.checkPortStatus(8484, '8.31.99.143', 10000, function(error, status) {
     if (status === 'open') {
       if(!login3){
-        login3Changed = true;
-        setTimeout(checkAnnounce, 2000);
+        login3Changed = new Date();
       }
       login3 = true;
       login3Delay = new Date() - lastCheck;
-      login3Changed = false;
     } else {
       if(login3){
-        login3Changed = true;
-        setTimeout(checkAnnounce, 2000);
+        login3Changed = new Date();
       }
       login3 = false;
       login3Delay = -1;
-      login3Changed = false;
     }
   });
+  checkAnnounce();
   setTimeout(cronCheck, 30000);
 }
 
-function setInitial() {
-  initial = false;
-}
-
 function checkAnnounce() {
-  if(!initial && login1Changed && login2Changed && login3Changed){
+  if(!initial && (login1 == login2 && login2 == login3) && (login1 && login2 && login3) != overall){
     sendAnnouncement();
-    login1Changed = false;
-    login2Changed = false;
-    login3Changed = false;
+    overall = login1;
+    overallChanged = new Date();
   } else if(initial){
-    setTimeout(setInitial, 10000);
+    initial = false;
   }
 }
 
