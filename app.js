@@ -27,7 +27,7 @@ const config = require("./config.json");
 
 bot.on("ready", () => {
   console.log(`MapleStatus started, with ${bot.users.size} users, in ${bot.channels.size} channels of ${bot.guilds.size} guilds.`);
-  bot.user.setActivity(`Usage: !maplestatus`);
+  bot.user.setActivity(`Commands: !mshelp`);
 });
 
 bot.on("guildCreate", server => {
@@ -58,15 +58,15 @@ bot.on("message", async message => {
         title: "GMS Server Status",
         fields: [{
             name: "Login Server 1",
-            value: login1 ? `<:white_check_mark:418194250694393857> Currently online (${login1Delay} ms)\nOnline for ${formatDurationShort(lastCheck - login1Changed)}` : "<:x:418196366280622090> Currently offline (No response in 10 seconds)\nOffline for ${formatDurationShort(lastCheck - login1Changed)}"
+            value: login1 ? `<:white_check_mark:418194250694393857> Currently online (${login1Delay} ms)\nOnline for ${formatDurationShort(lastCheck - login1Changed)}` : `<:x:418196366280622090> Currently offline\nOffline for ${formatDurationShort(lastCheck - login1Changed)}`
           },
           {
             name: "Login Server 2",
-            value: login2 ? `<:white_check_mark:418194250694393857> Currently online (${login2Delay} ms)\nOnline for ${formatDurationShort(lastCheck - login1Changed)}` : "<:x:418196366280622090> Currently offline (No response in 10 seconds)\nOffline for ${formatDurationShort(lastCheck - login1Changed)}"
+            value: login2 ? `<:white_check_mark:418194250694393857> Currently online (${login2Delay} ms)\nOnline for ${formatDurationShort(lastCheck - login1Changed)}` : `<:x:418196366280622090> Currently offline\nOffline for ${formatDurationShort(lastCheck - login1Changed)}`
           },
           {
             name: "Login Server 3",
-            value: login3 ? `<:white_check_mark:418194250694393857> Currently online (${login3Delay} ms)\nOnline for ${formatDurationShort(lastCheck - login1Changed)}` : "<:x:418196366280622090> Currently offline (No response in 10 seconds)\nOffline for ${formatDurationShort(lastCheck - login1Changed)}"
+            value: login3 ? `<:white_check_mark:418194250694393857> Currently online (${login3Delay} ms)\nOnline for ${formatDurationShort(lastCheck - login1Changed)}` : `<:x:418196366280622090> Currently offline\nOffline for ${formatDurationShort(lastCheck - login1Changed)}`
           },
         ],
         timestamp: lastCheck,
@@ -197,7 +197,7 @@ function sendAnnouncement() {
     console.log("No room ID specified, skipping announcement");
     return;
   }
-
+  console.log("Sending announcement in channel " + config.room.trim());
   let ch = bot.channels.get(config.room.trim());
   if (login1 && login2 && login3){
     ch.send({embed: {
