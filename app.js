@@ -58,15 +58,15 @@ bot.on("message", async message => {
         title: "GMS Server Status",
         fields: [{
             name: "Login Server 1",
-            value: login1 ? `<:white_check_mark:418194250694393857> Currently online (${login1Delay} ms)` : "<:x:418196366280622090> Currently offline (No response in 10 seconds)"
+            value: login1 ? `<:white_check_mark:418194250694393857> Currently online (${login1Delay} ms)\nOnline for ${formatDurationShort(lastCheck - login1Changed)}` : "<:x:418196366280622090> Currently offline (No response in 10 seconds)\nOffline for ${formatDurationShort(lastCheck - login1Changed)}"
           },
           {
             name: "Login Server 2",
-            value: login2 ? `<:white_check_mark:418194250694393857> Currently online (${login2Delay} ms)` : "<:x:418196366280622090> Currently offline (No response in 10 seconds)"
+            value: login2 ? `<:white_check_mark:418194250694393857> Currently online (${login2Delay} ms)\nOnline for ${formatDurationShort(lastCheck - login1Changed)}` : "<:x:418196366280622090> Currently offline (No response in 10 seconds)\nOffline for ${formatDurationShort(lastCheck - login1Changed)}"
           },
           {
             name: "Login Server 3",
-            value: login3 ? `<:white_check_mark:418194250694393857> Currently online (${login3Delay} ms)` : "<:x:418196366280622090> Currently offline (No response in 10 seconds)"
+            value: login3 ? `<:white_check_mark:418194250694393857> Currently online (${login3Delay} ms)\nOnline for ${formatDurationShort(lastCheck - login1Changed)}` : "<:x:418196366280622090> Currently offline (No response in 10 seconds)\nOffline for ${formatDurationShort(lastCheck - login1Changed)}"
           },
         ],
         timestamp: lastCheck,
@@ -207,7 +207,7 @@ function sendAnnouncement() {
           icon_url: bot.user.avatarURL
         },
         title: "Maple Status Bot",
-        description: `<:white_check_mark:418194250694393857> All GMS MapleStory Login Servers are ONLINE!`,
+        description: `<:white_check_mark:418194250694393857> All GMS MapleStory Login Servers are now ONLINE!\n(After ${formatDurationShort((new Date) - overallChanged)} of downtime)`,
         timestamp: new Date(),
         footer: {
           icon_url: bot.user.avatarURL,
@@ -223,7 +223,7 @@ function sendAnnouncement() {
           icon_url: bot.user.avatarURL
         },
         title: "Maple Status Bot",
-        description: `<:x:418196366280622090> All GMS MapleStory Login Servers are OFFLINE!`,
+        description: `<:x:418196366280622090> All GMS MapleStory Login Servers are now OFFLINE!\n(After ${formatDurationShort((new Date) - overallChanged)} of uptime)`,
         timestamp: new Date(),
         footer: {
           icon_url: bot.user.avatarURL,
@@ -232,6 +232,37 @@ function sendAnnouncement() {
       }
     });
   }
+}
+
+function formatDurationShort(duration) {
+  let timeText = '';
+  let days, hours, minutes, seconds;
+  if (duration > 86400000) {
+    days = Math.floor(duration / 86400000);
+    duration = duration % 86400000;
+    hours = Math.floor(duration / 3600000);
+    duration = duration % 3600000;
+    minutes = Math.floor(duration / 60000);
+    duration = duration % 60000;
+    seconds = Math.floor(duration / 1000);
+    timeText += `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  } else if (duration > 3600000) {
+    hours = Math.floor(duration / 3600000);
+    duration = duration % 3600000;
+    minutes = Math.floor(duration / 60000);
+    duration = duration % 60000;
+    seconds = Math.floor(duration / 1000);
+    timeText += `${hours}h ${minutes}m ${seconds}s`;
+  } else if (duration > 60000) {
+    minutes = Math.floor(duration / 60000);
+    duration = duration % 60000;
+    seconds = Math.floor(duration / 1000);
+    timeText += `${minutes}m ${seconds}s`;
+  } else {
+    seconds = Math.floor(duration / 1000);
+    timeText += `${seconds}s`;
+  }
+  return timeText;
 }
 
 bot.login(config.token);
