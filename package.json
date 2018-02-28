@@ -1,0 +1,33 @@
+{
+  "name": "maplestatus",
+  "version": "1.0.0",
+  "description": "A discord bot to check GMS MapleStory status",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EricSihaoLin/MapleStatus.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "maplestory",
+    "server",
+    "status"
+  ],
+  "author": "Eric Lin",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/EricSihaoLin/MapleStatus/issues"
+  },
+  "homepage": "https://github.com/EricSihaoLin/MapleStatus#readme",
+  "dependencies": {
+    "discord.js": "^11.3.0",
+    "erlpack": "^0.1.2",
+    "portscanner": "^2.1.1",
+    "uws": "^9.14.0",
+    "zlib-sync": "^0.1.4"
+  }
+}
