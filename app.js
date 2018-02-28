@@ -19,7 +19,7 @@ var overall = false;
 var overallChanged = new Date();
 
 var initial = true;
-var lastCheck;
+var lastCheck = new Date();
 
 const config = require("./config.json");
 // config.token contains the bot's token
@@ -62,11 +62,11 @@ bot.on("message", async message => {
           },
           {
             name: "Login Server 2",
-            value: login2 ? `<:white_check_mark:418194250694393857> Currently online (${login2Delay} ms)\nOnline for ${formatDurationShort(lastCheck - login1Changed)}` : `<:x:418196366280622090> Currently offline\nOffline for ${formatDurationShort(lastCheck - login1Changed)}`
+            value: login2 ? `<:white_check_mark:418194250694393857> Currently online (${login2Delay} ms)\nOnline for ${formatDurationShort(lastCheck - login2Changed)}` : `<:x:418196366280622090> Currently offline\nOffline for ${formatDurationShort(lastCheck - login2Changed)}`
           },
           {
             name: "Login Server 3",
-            value: login3 ? `<:white_check_mark:418194250694393857> Currently online (${login3Delay} ms)\nOnline for ${formatDurationShort(lastCheck - login1Changed)}` : `<:x:418196366280622090> Currently offline\nOffline for ${formatDurationShort(lastCheck - login1Changed)}`
+            value: login3 ? `<:white_check_mark:418194250694393857> Currently online (${login3Delay} ms)\nOnline for ${formatDurationShort(lastCheck - login3Changed)}` : `<:x:418196366280622090> Currently offline\nOffline for ${formatDurationShort(lastCheck - login3Changed)}`
           },
         ],
         timestamp: lastCheck,
