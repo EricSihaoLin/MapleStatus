@@ -199,7 +199,7 @@ function sendAnnouncement() {
   }
   console.log("Sending announcement in channel " + config.room.trim());
   let ch = bot.channels.get(config.room.trim());
-  let role = ch.server.roles.get('name', 'Status');
+  let role = bot.roles.find('name', 'Status');
   if (login1 && login2 && login3){
     ch.send(role.mention() + " - GMS is ONLINE!")
     ch.send({embed: {
