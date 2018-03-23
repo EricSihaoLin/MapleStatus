@@ -199,7 +199,6 @@ function sendAnnouncement() {
   }
   console.log("Sending announcement in channel " + config.room.trim());
   let ch = bot.channels.get(config.room.trim());
-  let role = message.server.roles.get('name', 'Status');
   if (login1 && login2 && login3){
     ch.send({embed: {
         color: 3447003,
@@ -208,7 +207,7 @@ function sendAnnouncement() {
           icon_url: bot.user.avatarURL
         },
         title: "Maple Status Bot",
-        description: `<:white_check_mark:418194250694393857> All GMS MapleStory Login Servers are now ONLINE!\n(After ${formatDurationShort((new Date) - overallChanged)} of downtime)\n${role}`,
+        description: `<:white_check_mark:418194250694393857> All GMS MapleStory Login Servers are now ONLINE!\n(After ${formatDurationShort((new Date) - overallChanged)} of downtime)\n<@&426828342059335681>`,
         timestamp: new Date(),
         footer: {
           icon_url: bot.user.avatarURL,
@@ -224,7 +223,7 @@ function sendAnnouncement() {
           icon_url: bot.user.avatarURL
         },
         title: "Maple Status Bot",
-        description: `<:x:418196366280622090> All GMS MapleStory Login Servers are now OFFLINE!\n(After ${formatDurationShort((new Date) - overallChanged)} of uptime)\n${role}`,
+        description: `<:x:418196366280622090> All GMS MapleStory Login Servers are now OFFLINE!\n(After ${formatDurationShort((new Date) - overallChanged)} of uptime)\n<@&426828342059335681>`,
         timestamp: new Date(),
         footer: {
           icon_url: bot.user.avatarURL,
