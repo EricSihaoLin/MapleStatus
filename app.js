@@ -58,15 +58,15 @@ bot.on("message", async message => {
         title: "GMS Server Status",
         fields: [{
             name: "Login Server 1",
-            value: login1 ? `<:white_check_mark:418194250694393857> Currently online (${login1Delay} ms)\nOnline for ${formatDurationShort(lastCheck - login1Changed)}` : `<:x:418196366280622090> Currently offline\nOffline for ${formatDurationShort(lastCheck - login1Changed)}`
+            value: login1 ? `<:white_check_mark:418194250694393857> Currently online (${login1Delay} ms)\nOnline for ${formatDurationShort(lastCheck - login1Changed)}` : `<:x:418196366280622090> Currently offline\nOffline for ${formatDurationShort(lastCheck - login1Changed)}\n`
           },
           {
             name: "Login Server 2",
-            value: login2 ? `<:white_check_mark:418194250694393857> Currently online (${login2Delay} ms)\nOnline for ${formatDurationShort(lastCheck - login2Changed)}` : `<:x:418196366280622090> Currently offline\nOffline for ${formatDurationShort(lastCheck - login2Changed)}`
+            value: login2 ? `<:white_check_mark:418194250694393857> Currently online (${login2Delay} ms)\nOnline for ${formatDurationShort(lastCheck - login2Changed)}` : `<:x:418196366280622090> Currently offline\nOffline for ${formatDurationShort(lastCheck - login2Changed)}\n`
           },
           {
             name: "Login Server 3",
-            value: login3 ? `<:white_check_mark:418194250694393857> Currently online (${login3Delay} ms)\nOnline for ${formatDurationShort(lastCheck - login3Changed)}` : `<:x:418196366280622090> Currently offline\nOffline for ${formatDurationShort(lastCheck - login3Changed)}`
+            value: login3 ? `<:white_check_mark:418194250694393857> Currently online (${login3Delay} ms)\nOnline for ${formatDurationShort(lastCheck - login3Changed)}` : `<:x:418196366280622090> Currently offline\nOffline for ${formatDurationShort(lastCheck - login3Changed)}\n`
           },
         ],
         timestamp: lastCheck,
@@ -199,7 +199,7 @@ function sendAnnouncement() {
   }
   console.log("Sending announcement in channel " + config.room.trim());
   let ch = bot.channels.get(config.room.trim());
-  let role = bot.roles.find('name', 'Status');
+  let role = bot.guilds.get("363787630250295296").roles.find("name", "Status");
   if (login1 && login2 && login3){
     ch.send(role.mention() + " - GMS is ONLINE!")
     ch.send({embed: {
@@ -209,7 +209,7 @@ function sendAnnouncement() {
           icon_url: bot.user.avatarURL
         },
         title: "Maple Status Bot",
-        description: `<:white_check_mark:418194250694393857> All GMS MapleStory Login Servers are now ONLINE!\n(After ${formatDurationShort((new Date) - overallChanged)} of downtime)\n<@&426828342059335681>`,
+        description: `<:white_check_mark:418194250694393857> All GMS MapleStory Login Servers are now ONLINE!\n(After ${formatDurationShort((new Date) - overallChanged)} of downtime)\n`,
         timestamp: new Date(),
         footer: {
           icon_url: bot.user.avatarURL,
@@ -226,7 +226,7 @@ function sendAnnouncement() {
           icon_url: bot.user.avatarURL
         },
         title: "Maple Status Bot",
-        description: `<:x:418196366280622090> All GMS MapleStory Login Servers are now OFFLINE!\n(After ${formatDurationShort((new Date) - overallChanged)} of uptime)\n<@&426828342059335681>`,
+        description: `<:x:418196366280622090> All GMS MapleStory Login Servers are now OFFLINE!\n(After ${formatDurationShort((new Date) - overallChanged)} of uptime)\n`,
         timestamp: new Date(),
         footer: {
           icon_url: bot.user.avatarURL,
