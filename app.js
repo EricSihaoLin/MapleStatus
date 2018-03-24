@@ -199,9 +199,8 @@ function sendAnnouncement() {
   }
   console.log("Sending announcement in channel " + config.room.trim());
   let ch = bot.channels.get(config.room.trim());
-  let role = bot.guilds.get("363787630250295296").roles.get("name", "Status");
   if (login1 && login2 && login3){
-    ch.send(role + " - GMS is ONLINE!")
+    ch.send("<@&427112367608954880> - GMS is ONLINE!")
     ch.send({embed: {
         color: 3447003,
         author: {
@@ -218,7 +217,7 @@ function sendAnnouncement() {
       }
     });
   } else if (!login1 && !login2 && !login3) {
-    ch.send(role + " - GMS is OFFLINE!")
+    ch.send("<@&427112367608954880> - GMS is OFFLINE!")
     ch.send({embed: {
         color: 3447003,
         author: {
