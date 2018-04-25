@@ -27,6 +27,7 @@ const config = require("./config.json");
 // config.prefix contains the message prefix.
 
 bot.on("ready", () => {
+  cronCheck();
   console.log(`MapleStatus started, with ${bot.users.size} users, in ${bot.channels.size} channels of ${bot.guilds.size} guilds.`);
 });
 
@@ -269,4 +270,3 @@ function formatDurationShort(duration) {
 }
 
 bot.login(config.token);
-cronCheck();
