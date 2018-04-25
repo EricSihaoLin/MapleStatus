@@ -202,7 +202,7 @@ function sendAnnouncement() {
   console.log("Sending announcement in channel " + config.room.trim());
   let ch = bot.channels.get(config.room.trim());
   if (login1 && login2 && login3){
-    ch.send("<@&426823825787977729> - GMS is ONLINE!")
+    ch.send("<@&438778345635971077> - GMS is ONLINE!")
     ch.send({embed: {
         color: 3447003,
         author: {
@@ -219,7 +219,7 @@ function sendAnnouncement() {
       }
     });
   } else if (!login1 && !login2 && !login3) {
-    ch.send("<@&426823825787977729> - GMS is OFFLINE!")
+    ch.send("<@&438778345635971077> - GMS is OFFLINE!")
     ch.send({embed: {
         color: 3447003,
         author: {
