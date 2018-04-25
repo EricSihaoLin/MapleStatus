@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const portscanner = require('portscanner');
+const moment = require('moment');
 const bot = new Discord.Client();
 
 //Global status
@@ -27,7 +28,6 @@ const config = require("./config.json");
 
 bot.on("ready", () => {
   console.log(`MapleStatus started, with ${bot.users.size} users, in ${bot.channels.size} channels of ${bot.guilds.size} guilds.`);
-  bot.user.setActivity(`Commands: !mshelp`);
 });
 
 bot.on("guildCreate", server => {
@@ -133,6 +133,7 @@ bot.on("message", async message => {
 
 function cronCheck() {
   lastCheck = new Date();
+  bot.user.setActivity(`UTC: ` + moment.utc().format("hh:mm a") + ` | !mshelp`);
   portscanner.checkPortStatus(8484, '8.31.99.141', 10000, function(error, status) {
     if (status === 'open') {
       if(!login1){
