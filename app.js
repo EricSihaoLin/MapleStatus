@@ -133,7 +133,7 @@ bot.on("message", async message => {
 
 function cronCheck() {
   lastCheck = new Date();
-  bot.user.setActivity(`UTC: ` + moment.utc().format("hh:mm a") + ` | !mshelp`);
+  bot.user.setActivity(`UTC: ${moment.utc().format("hh:mm a")} | !mshelp`);
   portscanner.checkPortStatus(8484, '8.31.99.141', 10000, function(error, status) {
     if (status === 'open') {
       if(!login1){
